@@ -18,7 +18,8 @@ data class Post(
     val isPinned: Int = 0,      // Информация о том, что запись закреплена
     val markedAsAds: Boolean = false,   // содержит ли запись отметку «реклама» (true — да, false — нет)
     val isFavorite: Boolean = false,     // true, если объект добавлен в закладки у текущего пользователя
-    val postponedId: Int = 0,    // Идентификатор отложенной записи. Это поле возвращается тогда, когда запись стояла на таймере
+    val postponedId: Int = 0, // Идентификатор отложенной записи. Это поле возвращается тогда, когда запись стояла на таймере
+    val attachment: Attachment?
     )
 
 data class Comments (
@@ -51,8 +52,7 @@ class WallService {
                     post.id,
                     oldPost.ownerId,    // Идентификатор владельца стены
                     post.fromId,
-                    post.createdBy,
-                    oldPost.date,       // Время публикации записи в формате unixtime
+                    post.createdBy,                    oldPost.date,       // Время публикации записи в формате unixtime
                     post.text,
                     post.replyOwnerId,
                     post.replyPostId,

@@ -13,7 +13,8 @@ class WallServiceTest {
                 date = 36000,   // Время публикации записи в формате unixtime
                 text = "Hi!",   // Текст записи
                 comments = null,
-                likes = null
+                likes = null,
+                attachment = null
             )
         )
         val result = post.id != 0
@@ -25,12 +26,12 @@ class WallServiceTest {
         // создаём целевой сервис
         val service = WallService()
         // заполняем несколькими постами
-        val updateId = service.add(Post(text="Hi, it's me",comments = null,likes = null)).id
-        service.add(Post(text="Hello",comments = null,likes = null))
-        service.add(Post(text="Bay",comments = null,likes = null))
+        val updateId = service.add(Post(text="Hi, it's me",comments = null,likes = null, attachment = null)).id
+        service.add(Post(text="Hello",comments = null,likes = null, attachment = null))
+        service.add(Post(text="Bay",comments = null,likes = null, attachment = null))
 
         // создаём информацию об обновлении
-        val update = Post(id=updateId, text="Ho-ho-ho",comments = null,likes = null)
+        val update = Post(id=updateId, text="Ho-ho-ho",comments = null,likes = null, attachment = null)
 
         // выполняем целевое действие
         val result = service.update(update)
@@ -44,12 +45,12 @@ class WallServiceTest {
         // создаём целевой сервис
         val service = WallService()
         // заполняем несколькими постами
-        service.add(Post(text="Hi, it's me",comments = null,likes = null))
-        service.add(Post(text="Hello",comments = null,likes = null))
-        service.add(Post(text="Bay",comments = null,likes = null))
+        service.add(Post(text="Hi, it's me",comments = null,likes = null, attachment = null))
+        service.add(Post(text="Hello",comments = null,likes = null, attachment = null))
+        service.add(Post(text="Bay",comments = null,likes = null, attachment = null))
 
         // создаём информацию об обновлении
-        val update = Post(id=0, text="Ho-ho-ho",comments = null,likes = null)
+        val update = Post(id=0, text="Ho-ho-ho",comments = null,likes = null, attachment = null)
 
         // выполняем целевое действие
         val result = service.update(update)

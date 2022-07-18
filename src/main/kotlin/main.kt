@@ -8,9 +8,9 @@ data class Post(
     val replyOwnerId: Int = 654,   // Идентификатор владельца записи, в ответ на которую была оставлена текущая
     val replyPostId: Int = 987,    // Идентификатор записи, в ответ на которую была оставлена текущая
     val friendsOnly: Boolean = true,    // true, если запись была создана с опцией «Только для друзей»
-    val comments: Comments = Comments(0, false, false, false, false),
+    val comments: Comments?,
     // комментарии к записи
-    val likes: Likes = Likes(3, true, false, false),
+    val likes: Likes?,
     // лайки к записи
     val canPin: Boolean = true,    //может ли текущий пользователь закрепить запись (true — может, false — не может).
     val canDelete: Boolean = true, //может ли текущий пользователь удалить запись (true — может, false — не может).

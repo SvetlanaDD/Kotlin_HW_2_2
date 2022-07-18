@@ -1,4 +1,3 @@
-//import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -13,6 +12,8 @@ class WallServiceTest {
                 id = 0,         // Идентификатор записи
                 date = 36000,   // Время публикации записи в формате unixtime
                 text = "Hi!",   // Текст записи
+                comments = null,
+                likes = null
             )
         )
         val result = post.id != 0
@@ -24,12 +25,12 @@ class WallServiceTest {
         // создаём целевой сервис
         val service = WallService()
         // заполняем несколькими постами
-        val updateId = service.add(Post(text="Hi, it's me")).id
-        service.add(Post(text="Hello"))
-        service.add(Post(text="Bay"))
+        val updateId = service.add(Post(text="Hi, it's me",comments = null,likes = null)).id
+        service.add(Post(text="Hello",comments = null,likes = null))
+        service.add(Post(text="Bay",comments = null,likes = null))
 
         // создаём информацию об обновлении
-        val update = Post(id=updateId, text="Ho-ho-ho")
+        val update = Post(id=updateId, text="Ho-ho-ho",comments = null,likes = null)
 
         // выполняем целевое действие
         val result = service.update(update)
@@ -43,12 +44,12 @@ class WallServiceTest {
         // создаём целевой сервис
         val service = WallService()
         // заполняем несколькими постами
-        service.add(Post(text="Hi, it's me"))
-        service.add(Post(text="Hello"))
-        service.add(Post(text="Bay"))
+        service.add(Post(text="Hi, it's me",comments = null,likes = null))
+        service.add(Post(text="Hello",comments = null,likes = null))
+        service.add(Post(text="Bay",comments = null,likes = null))
 
         // создаём информацию об обновлении
-        val update = Post(id=0, text="Ho-ho-ho")
+        val update = Post(id=0, text="Ho-ho-ho",comments = null,likes = null)
 
         // выполняем целевое действие
         val result = service.update(update)

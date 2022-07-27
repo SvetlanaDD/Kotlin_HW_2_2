@@ -2,11 +2,11 @@ interface Attachment {
     val type: String
 }
 
-class AttachmentPhoto(override val type: String = "Photo"): Attachment{
+class AttachmentPhoto(override val type: String = "Photo") : Attachment {
     val photos = emptyArray<Photo>()
 }
 
-class Photo(override val type: String) : Attachment{
+class Photo(override val type: String) : Attachment {
     val id: Int
         get() = TODO()
     val albumId: Int
@@ -21,7 +21,7 @@ class Photo(override val type: String) : Attachment{
         get() = TODO()
 }
 
-class AttachmentAudio(override val type: String = "Audio"): Attachment{
+class AttachmentAudio(override val type: String = "Audio") : Attachment {
     val audios = emptyArray<Audio>()
 }
 
@@ -40,7 +40,7 @@ class Audio(override val type: String) : Attachment {
         get() = TODO()
 }
 
-class AttachmentVideo(override val type: String = "Video"): Attachment{
+class AttachmentVideo(override val type: String = "Video") : Attachment {
     val videos = emptyArray<Video>()
 }
 
@@ -57,7 +57,7 @@ class Video(override val type: String) : Attachment {
         get() = TODO()
 }
 
-class AttachmentFile(override val type: String = "File"): Attachment{
+class AttachmentFile(override val type: String = "File") : Attachment {
     val files = emptyArray<File>()
 }
 
@@ -74,7 +74,7 @@ class File(override val type: String) : Attachment {
         get() = TODO()
 }
 
-class AttachmentSticker(override val type: String = "Sticker"): Attachment{
+class AttachmentSticker(override val type: String = "Sticker") : Attachment {
     val stickers = emptyArray<Sticker>()
 }
 

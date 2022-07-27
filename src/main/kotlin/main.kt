@@ -34,6 +34,7 @@ data class Likes(
     val canLike: Boolean,   //может ли текущий пользователь поставить отметку «Мне нравится» (true — может, false — не может);
     val canPublish: Boolean //может ли текущий пользователь сделать репост записи (true — может, false — не может).
 )
+
 data class Comment(
     val id: Int = 0,                //Идентификатор комментария
     val fromId: Int = 0,            //Идентификатор автора комментария
@@ -43,7 +44,7 @@ data class Comment(
     val replyToComment: Int?,       //Идентификатор комментария, в ответ на который оставлен текущий (если применимо)
     val attachments: Attachment?,   // Медиавложения комментария (фотографии, ссылки и т.п.). Описание массива attachments находится на отдельной странице.
     val parentsStack: Array<Int>?,  //Массив идентификаторов родительских комментариев
-    val thread:ThreadComments?,     //Информация о вложенной ветке комментариев, объект с полями:
+    val thread: ThreadComments?,     //Информация о вложенной ветке комментариев, объект с полями:
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -151,7 +152,7 @@ class WallService {
         return false
     }
 
-    fun findById(id:Int):Post?{
+    fun findById(id: Int): Post? {
         for (post in posts) {
             if (post.id == id) {
                 return post
@@ -159,35 +160,20 @@ class WallService {
         }
         return null
     }
+
     fun createComment(postId: Int, comment: Comment): Comment {
-        for ((index,post) in posts.withIndex()) {
+        for ((index, post) in posts.withIndex()) {
             if (post.id == postId) {
                 comments += comment
                 posts[index] = post.copy(
-                    post.id,
-                    post.ownerId,
-                    post.fromId,
-                    post.createdBy,
-                    post.date,
-                    post.text,
-                    post.replyOwnerId,
-                    post.replyPostId,
-                    post.friendsOnly,
                     comments = Comments(
-                        count = (post.comments?.count ?: 0)+1,
+                        count = (post.comments?.count ?: 0) + 1,
                         canPost = post.comments?.canPost ?: false,
                         groupsCanPost = post.comments?.groupsCanPost ?: false,
                         canClose = post.comments?.canClose ?: false,
                         canOpen = post.comments?.canOpen ?: false
-                    ),
-                    post.likes,
-                    post.canPin,
-                    post.canDelete,
-                    post.canEdit,
-                    post.isPinned,
-                    post.markedAsAds,
-                    post.isFavorite,
-                    post.postponedId)
+                    )
+                )
             }
         }
         if (findById(postId) == null) throw PostNotFoundException("No post with id $postId")
